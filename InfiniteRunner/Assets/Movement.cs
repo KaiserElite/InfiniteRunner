@@ -8,7 +8,8 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
 
     private bool top;
-    private int score;
+    private int score; /// Figure out how to code the score based on time (ex. 1 second = 1 point)
+                       /// and then figure out how to display the score onto the game itself
 
     // Start is called before the first frame update
     void Start()
@@ -49,10 +50,6 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Score")
-        {
-            score++;
-        }
         if (collision.gameObject.tag == "GameOver")
         {
             GameStateManager.GameOver();
