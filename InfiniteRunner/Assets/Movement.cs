@@ -5,15 +5,9 @@ using UnityEngine;
 public enum Speeds { Slow = 0, Normal = 1, Fast = 2, Faster = 3, Fastest = 4};
 public class Movement : MonoBehaviour
 {
-    public Speeds CurrentSpeed;
-
-    float[] SpeedValues = { 8.6f, 10.4f, 12.96f, 15.6f, 19.27f };
-
-    public Transform GroundCheckTransform;
-    public float GroundCheckRadius;
-    public LayerMask GroundMask;
-
     Rigidbody2D rb;
+
+    private bool top;
 
     // Start is called before the first frame update
     void Start()
@@ -24,20 +18,22 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right * SpeedValues[(int)CurrentSpeed] * Time.deltaTime;
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (OnGround())
-            {
-                rb.velocity = Vector2.zero;
-                rb.AddForce(Vector2.up * 26.6581f, ForceMode2D.Impulse);
-            }
+            rb.gravityScale *= -1;
         }
     }
 
-    bool OnGround()
+    void Rotation()
     {
-        return Physics2D.OverlapCircle(GroundCheckTransform.position, GroundCheckRadius, GroundMask);
+        if (top == false)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 180f);
+        }
+        else
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+        top = !top;
     }
 }
