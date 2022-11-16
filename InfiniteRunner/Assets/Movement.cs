@@ -20,7 +20,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        score = 1;
+        score = 0;
+        scoreDisplay.text = score + "";
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class Movement : MonoBehaviour
         {
             rb.gravityScale *= -1;
         }
-        scoreDisplay.text = score.ToString();
+        //scoreDisplay.text = score.ToString();
     }
 
     void Rotation()
