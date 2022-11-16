@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public enum Speeds { Slow = 0, Normal = 1, Fast = 2, Faster = 3, Fastest = 4};
+
+
 public class Movement : MonoBehaviour
 {
+    [SerializeField]
+    private Text scoreDisplay;
+
     Rigidbody2D rb;
 
     private bool top;
@@ -15,7 +20,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        score = 0;
+        score = 1;
     }
 
     // Update is called once per frame
@@ -25,6 +30,7 @@ public class Movement : MonoBehaviour
         {
             rb.gravityScale *= -1;
         }
+        scoreDisplay.text = score.ToString();
     }
 
     void Rotation()
@@ -45,6 +51,10 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "GameOver")
         {
             GameStateManager.GameOver();
+        }
+        if (collision.gameObject.tag == "Score")
+        {
+            score++;
         }
     }
 
