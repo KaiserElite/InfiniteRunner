@@ -13,14 +13,15 @@ public class Movement : MonoBehaviour
     Rigidbody2D rb;
 
     private bool top;
-    private int score; /// Figure out how to code the score based on time (ex. 1 second = 1 point)
-                       /// and then figure out how to display the score onto the game itself
+    private int score;/// Figure out how to code the score based on time (ex. 1 second = 1 point)
+                      /// and then figure out how to display the score onto the game itself
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        score = 1;
+        score = 0;
+        scoreDisplay.text = score + "";
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class Movement : MonoBehaviour
         {
             rb.gravityScale *= -1;
         }
-        scoreDisplay.text = score.ToString();
+        //scoreDisplay.text = score.ToString();
     }
 
     void Rotation()
@@ -54,7 +55,8 @@ public class Movement : MonoBehaviour
         }
         if (collision.gameObject.tag == "Score")
         {
-            score++;
+            score = score + 2;
+            scoreDisplay.text = score + "";
         }
     }
 
