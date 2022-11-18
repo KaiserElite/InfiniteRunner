@@ -53,11 +53,6 @@ public class Movement : MonoBehaviour
         {
             GameStateManager.GameOver();
         }
-        if (collision.gameObject.tag == "Score")
-        {
-            score = score + 2;
-            scoreDisplay.text = score + "";
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +60,11 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "GameOver")
         {
             GameStateManager.GameOver();
+        }
+        if (collision.gameObject.tag == "Score")
+        {
+            score = score + 2;
+            scoreDisplay.text = score + "";
         }
     }
 }
