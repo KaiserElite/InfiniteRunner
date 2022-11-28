@@ -27,7 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             nextSpawnTime = Time.time + Random.Range(spawnMinTime, spawnMaxTime);
-            GameObject.Instantiate(pillarPrefabs[Random.Range(0, 3)], transform);
+            GameObject.Instantiate(pillarPrefabs[Random.Range(0, 4)], transform);
         }
     }
 }

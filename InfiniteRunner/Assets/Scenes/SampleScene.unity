@@ -2347,6 +2347,7 @@ MonoBehaviour:
   - {fileID: 1989089233336266911, guid: ff00417987a506c4c9a08fb7320bde4a, type: 3}
   - {fileID: 8980744620771428920, guid: d978e1c9f9bf9c44990e07f3ea1c2c69, type: 3}
   - {fileID: 8980744620771428920, guid: 33ab988cb2e9c3243ab9ad4bb8ac91e1, type: 3}
+  - {fileID: 1985234632993443428, guid: 7f766ed27c895d044b46c172c4b088bb, type: 3}
   spawnMinTime: 0.5
   spawnMaxTime: 2
 --- !u!4 &1831694663
