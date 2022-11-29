@@ -32,13 +32,11 @@ public class Movement : MonoBehaviour
         {
             rb.gravityScale *= -1;
             animator.SetBool("isFlying", true);
+            animator.SetBool("isCeil", false);
         }
         //scoreDisplay.text = score.ToString();
     }
-    public void OnLanding()
-    {
-      animator.SetBool("isFlying", false);
-    }
+
 
     void Rotation()
     {
@@ -62,6 +60,10 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Ceiling")
         {
             animator.SetBool("isFlying", false);
+        }
+        if (collision.gameObject.tag == "Ceiling")
+        {
+            animator.SetBool("isCeil", true);
         }
     }
 
