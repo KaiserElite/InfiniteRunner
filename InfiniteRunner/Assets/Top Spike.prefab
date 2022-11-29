@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 6652262623415271900}
   - component: {fileID: 982637167011360279}
   - component: {fileID: 4783777898345678166}
+  - component: {fileID: 6375536774199450021}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Score
@@ -555,6 +556,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &6375536774199450021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8751963023899439733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198bc49f9fea0fe4f92e987c72f615fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8980744620771428920
 GameObject:
   m_ObjectHideFlags: 0
