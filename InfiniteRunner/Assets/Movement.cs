@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     private Text scoreDisplay;
 
     Rigidbody2D rb;
+    public Animator animator; 
 
     private bool top;
     private int score;/// Figure out how to code the score based on time (ex. 1 second = 1 point)
@@ -30,8 +31,13 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.gravityScale *= -1;
+            animator.SetBool("isFlying", true);
         }
         //scoreDisplay.text = score.ToString();
+    }
+    public void OnLanding()
+    {
+      animator.SetBool("isFlying", false);
     }
 
     void Rotation()
@@ -53,7 +59,12 @@ public class Movement : MonoBehaviour
         {
             GameStateManager.GameOver();
         }
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Ceiling")
+        {
+            animator.SetBool("isFlying", false);
+        }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,6 +72,7 @@ public class Movement : MonoBehaviour
         {
             GameStateManager.GameOver();
         }
+        
         if (collision.gameObject.tag == "Score")
         {
             score = score + 2;

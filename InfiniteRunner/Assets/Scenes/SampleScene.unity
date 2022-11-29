@@ -1929,6 +1929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreDisplay: {fileID: 109358783}
+  animator: {fileID: 1486998167}
 --- !u!4 &1486998165
 Transform:
   m_ObjectHideFlags: 0
