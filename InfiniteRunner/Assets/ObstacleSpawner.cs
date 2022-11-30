@@ -16,8 +16,6 @@ public class ObstacleSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnMinTime = 3.0f;
-        spawnMaxTime = 5.0f;
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
     }
 
@@ -27,7 +25,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             nextSpawnTime = Time.time + Random.Range(spawnMinTime, spawnMaxTime);
-            GameObject.Instantiate(pillarPrefabs[Random.Range(0, 4)], transform);
+            GameObject.Instantiate(pillarPrefabs[Random.Range(0, pillarPrefabs.Count)], transform);
         }
     }
 }

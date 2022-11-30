@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
         
         if (collision.gameObject.tag == "Score")
         {
-            score = score + 2;
+            score = score + 1;
             scoreDisplay.text = score + "";
         }
     }
