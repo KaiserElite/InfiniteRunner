@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
     [SerializeField]
+    private Rigidbody2D rb;
+
+    [SerializeField]
     private Text scoreDisplay;
 
-    Rigidbody2D rb;
     public Animator animator; 
 
     private bool top;
@@ -20,7 +22,6 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         score = 0;
         scoreDisplay.text = score + "";
     }

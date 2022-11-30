@@ -1928,6 +1928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28db074a3efd9974086731325119f8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1486998163}
   scoreDisplay: {fileID: 109358783}
   animator: {fileID: 1486998167}
 --- !u!4 &1486998165
@@ -2426,8 +2427,8 @@ MonoBehaviour:
   - {fileID: 6157162872762338189, guid: 47794855727effb49ab7c1baa585e0d1, type: 3}
   - {fileID: 3664889040627001329, guid: 2450a6f058079b44f9151b4b15fa9b98, type: 3}
   - {fileID: 3664889040627001329, guid: e268a010de3c78d42bc34e90f69d3116, type: 3}
-  spawnMinTime: 2
-  spawnMaxTime: 4
+  spawnMinTime: 2.5
+  spawnMaxTime: 4.5
 --- !u!4 &1831694663
 Transform:
   m_ObjectHideFlags: 0
