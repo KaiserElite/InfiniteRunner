@@ -18,6 +18,9 @@ public class Movement : MonoBehaviour
     private Text HighscoreDisplay;
 
     [SerializeField]
+    private Text multiplierDisplay;
+
+    [SerializeField]
     private float iFrames;
 
     [SerializeField]
@@ -41,6 +44,7 @@ public class Movement : MonoBehaviour
         highscore = PlayerPrefs.GetInt("HighScore", 0);
         scoreDisplay.text = score + "";
         HighscoreDisplay.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        multiplierDisplay.text = "x" + scoreMultiplier;
         hasShield = false;
         shieldIcon.SetActive(false);
         scoreMultiplier = 1;
@@ -126,6 +130,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "PlusOne")
         {
             scoreMultiplier += 1;
+            multiplierDisplay.text = "x" + scoreMultiplier;
         }
     }
 }
