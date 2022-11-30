@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class gameOver : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     public static bool isOver;
     //public bool retry;
@@ -32,14 +30,14 @@ public class gameOver : MonoBehaviour
         Time.timeScale = 1f;
         isOver = !isOver;
         SceneManager.LoadScene("SampleScene");
-        
+
         //retry = !retry;
     }
     public void Menu()
     {
         isOver = !isOver;
         SceneManager.LoadScene("Menu");
-        
+
     }
 
 }

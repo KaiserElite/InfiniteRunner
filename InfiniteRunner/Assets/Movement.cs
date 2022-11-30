@@ -82,7 +82,7 @@ public class Movement : MonoBehaviour
             }
             if (endOfIFrames <= 0.0f)
             {
-                GameStateManager.GameOver();
+                GameStateManager.gameOver();
             }
         }
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Ceiling")

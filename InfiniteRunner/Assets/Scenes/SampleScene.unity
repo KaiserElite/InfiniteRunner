@@ -1489,6 +1489,7 @@ MonoBehaviour:
   rb: {fileID: 1486998163}
   scoreDisplay: {fileID: 109358783}
   HighscoreDisplay: {fileID: 554073411}
+  iFrames: 2
   animator: {fileID: 1486998167}
 --- !u!4 &1486998165
 Transform:
@@ -1988,6 +1989,7 @@ MonoBehaviour:
   - {fileID: 6157162872762338189, guid: 47794855727effb49ab7c1baa585e0d1, type: 3}
   - {fileID: 3664889040627001329, guid: 2450a6f058079b44f9151b4b15fa9b98, type: 3}
   - {fileID: 3664889040627001329, guid: e268a010de3c78d42bc34e90f69d3116, type: 3}
+  - {fileID: 3256929123849263534, guid: d99e0a835f80e884c84ac850fe8edac2, type: 3}
   spawnMinTime: 2.5
   spawnMaxTime: 4.5
 --- !u!4 &1831694663
