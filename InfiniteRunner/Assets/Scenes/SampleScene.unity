@@ -1993,6 +1993,8 @@ MonoBehaviour:
   - {fileID: 1788405902411708487, guid: addee65dab367764f9e56ce56872a176, type: 3}
   - {fileID: 2609907831176766826, guid: d3528187179f52a42825f6871a4e6d6a, type: 3}
   - {fileID: 2609907831176766826, guid: f0f806b25cd1baf4886fc5e7e37d2bc3, type: 3}
+  - {fileID: 4265602523029411724, guid: d161fc0c349482c4aa2475b0c029da92, type: 3}
+  - {fileID: 4265602523029411724, guid: 6204b10ded4a4a24887777f4babcea5e, type: 3}
   spawnMinTime: 2.5
   spawnMaxTime: 4.5
   powerupSpawn: 10
