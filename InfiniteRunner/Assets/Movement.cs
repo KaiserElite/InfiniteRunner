@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float iFrames;
 
+    [SerializeField]
+    private GameObject shieldIcon;
+
     public Animator animator; 
 
     private bool top;
@@ -29,6 +32,7 @@ public class Movement : MonoBehaviour
     private bool hasShield;
     private float endOfIFrames;
     private int scoreMultiplier;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,7 @@ public class Movement : MonoBehaviour
         scoreDisplay.text = score + "";
         HighscoreDisplay.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         hasShield = false;
+        shieldIcon.SetActive(false);
         scoreMultiplier = 1;
     }
 
@@ -79,6 +84,7 @@ public class Movement : MonoBehaviour
             {
                 endOfIFrames = iFrames;
                 hasShield = false;
+                shieldIcon.SetActive(false);
             }
             if (endOfIFrames <= 0.0f)
             {
@@ -113,6 +119,8 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Shield")
         {
             hasShield = true;
+            shieldIcon.SetActive(true);
+
         }
 
         if (collision.gameObject.tag == "PlusOne")
