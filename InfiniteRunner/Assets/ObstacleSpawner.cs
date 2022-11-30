@@ -10,13 +10,17 @@ public class ObstacleSpawner : MonoBehaviour
     private float spawnMinTime;
     [SerializeField]
     private float spawnMaxTime;
+    [SerializeField]
+    private int powerupSpawn;
 
     private float nextSpawnTime;
+    private int numOfSpawns;
 
     // Start is called before the first frame update
     void Start()
     {
         nextSpawnTime = Random.Range(spawnMinTime, spawnMaxTime);
+        numOfSpawns = 0;
     }
 
     // Update is called once per frame
@@ -25,7 +29,15 @@ public class ObstacleSpawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             nextSpawnTime = Time.time + Random.Range(spawnMinTime, spawnMaxTime);
-            GameObject.Instantiate(pillarPrefabs[Random.Range(0, pillarPrefabs.Count)], transform);
+            if (numOfSpawns % powerupSpawn == 0)
+            {
+                GameObject.Instantiate(pillarPrefabs[0], transform);
+            }
+            else
+            {
+                GameObject.Instantiate(pillarPrefabs[Random.Range(1, pillarPrefabs.Count)], transform);
+            }
+            numOfSpawns++;
         }
     }
 }
