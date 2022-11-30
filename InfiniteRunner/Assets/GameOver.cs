@@ -4,9 +4,9 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class gameOver : MonoBehaviour
 {
-    public bool isOver;
+    public static bool isOver;
     //public bool retry;
     public GameObject GameOverMenu;
 
@@ -36,6 +36,7 @@ public class GameOver : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+        isOver = !isOver;
     }
 
 }
