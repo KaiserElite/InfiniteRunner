@@ -23,6 +23,9 @@ public class Movement : MonoBehaviour
     private int score;/// Figure out how to code the score based on time (ex. 1 second = 1 point)
                       /// and then figure out how to display the score onto the game itself
     private int highscore;
+    private bool hasShield;
+    private float endOfIFrames;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,7 @@ public class Movement : MonoBehaviour
         highscore = PlayerPrefs.GetInt("HighScore", 0);
         scoreDisplay.text = score + "";
         HighscoreDisplay.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        hasShield = false;
     }
 
     // Update is called once per frame
@@ -79,7 +83,16 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "GameOver")
         {
-            GameStateManager.GameOver();
+            if (hasShield)
+            {
+                endOfIFrames = 3.0f + Time.deltaTime;
+                hasShield = false;
+            }
+            if (endOfIFrames < Time.deltaTime)
+            {
+                endOfIFrames = 0.0f;
+                GameStateManager.GameOver();
+            }
         }
         
         if (collision.gameObject.tag == "Score")
@@ -92,6 +105,11 @@ public class Movement : MonoBehaviour
                 PlayerPrefs.SetInt("HighScore", highscore);
                 HighscoreDisplay.text = highscore + "";
             }
+        }
+
+        if (collision.gameObject.tag == "Shield")
+        {
+            hasShield = true;
         }
     }
 }
