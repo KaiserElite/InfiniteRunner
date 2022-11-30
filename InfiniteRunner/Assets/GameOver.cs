@@ -28,15 +28,17 @@ public class gameOver : MonoBehaviour
     }
     public void Retry()
     {
-        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1f;
         isOver = !isOver;
+        SceneManager.LoadScene("SampleScene");
+        
         //retry = !retry;
     }
     public void Menu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
         isOver = !isOver;
+        SceneManager.LoadScene("Menu");
+        
     }
 
 }
