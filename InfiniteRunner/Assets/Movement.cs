@@ -17,6 +17,9 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private Text HighscoreDisplay;
 
+    [SerializeField]
+    private float iFrames;
+
     public Animator animator; 
 
     private bool top;
@@ -25,6 +28,7 @@ public class Movement : MonoBehaviour
     private int highscore;
     private bool hasShield;
     private float endOfIFrames;
+    private int scoreMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,7 @@ public class Movement : MonoBehaviour
         scoreDisplay.text = score + "";
         HighscoreDisplay.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         hasShield = false;
+        scoreMultiplier = 1;
     }
 
     // Update is called once per frame
@@ -44,6 +49,10 @@ public class Movement : MonoBehaviour
             rb.gravityScale *= -1;
             animator.SetBool("isFlying", true);
             animator.SetBool("isCeil", false);
+        }
+        if (endOfIFrames > 0.0f)
+        {
+            endOfIFrames -= Time.deltaTime;
         }
         //scoreDisplay.text = score.ToString();
     }
@@ -66,7 +75,15 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "GameOver")
         {
-            GameStateManager.GameOver();
+            if (hasShield == true)
+            {
+                endOfIFrames = iFrames;
+                hasShield = false;
+            }
+            if (endOfIFrames <= 0.0f)
+            {
+                GameStateManager.GameOver();
+            }
         }
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Ceiling")
         {
@@ -81,23 +98,9 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "GameOver")
-        {
-            if (hasShield)
-            {
-                endOfIFrames = 3.0f + Time.deltaTime;
-                hasShield = false;
-            }
-            if (endOfIFrames < Time.deltaTime)
-            {
-                endOfIFrames = 0.0f;
-                GameStateManager.GameOver();
-            }
-        }
-        
         if (collision.gameObject.tag == "Score")
         {
-            score = score + 1;
+            score += scoreMultiplier;
             scoreDisplay.text = score + "";
             if (score > PlayerPrefs.GetInt("Highscore", highscore))
             {
@@ -110,6 +113,11 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Shield")
         {
             hasShield = true;
+        }
+
+        if (collision.gameObject.tag == "PlusOne")
+        {
+            scoreMultiplier += 1;
         }
     }
 }
