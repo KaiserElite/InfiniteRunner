@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +14,22 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private Text scoreDisplay;
 
+    [SerializeField]
+    private Text HighscoreDisplay;
+
     public Animator animator; 
 
     private bool top;
     private int score;/// Figure out how to code the score based on time (ex. 1 second = 1 point)
                       /// and then figure out how to display the score onto the game itself
-
+    private int highscore;
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
+        highscore = PlayerPrefs.GetInt("HighScore", 0);
         scoreDisplay.text = score + "";
+        HighscoreDisplay.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     // Update is called once per frame
@@ -80,6 +86,12 @@ public class Movement : MonoBehaviour
         {
             score = score + 1;
             scoreDisplay.text = score + "";
+            if (score > PlayerPrefs.GetInt("Highscore", highscore))
+            {
+                highscore = score;
+                PlayerPrefs.SetInt("HighScore", highscore);
+                HighscoreDisplay.text = highscore + "";
+            }
         }
     }
 }
