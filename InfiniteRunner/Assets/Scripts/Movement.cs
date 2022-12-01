@@ -18,25 +18,13 @@ public class Movement : MonoBehaviour
     private Text HighscoreDisplay;
 
     [SerializeField]
+    private Text multiplierDisplay;
+
+    [SerializeField]
     private float iFrames;
 
     [SerializeField]
-    private AudioSource jumpSoundEffect;
-
-    [SerializeField]
-    private AudioSource plusOneSoundEffect;
-
-    [SerializeField]
-    private AudioSource shieldSoundEffect;
-
-    [SerializeField]
-    private AudioSource coinSoundEffect;
-
-    [SerializeField]
-    private AudioSource deathSoundEffect;
-
-    [SerializeField]
-    private AudioSource newHighScoreSoundEffect;
+    private GameObject shieldIcon;
 
     public Animator animator; 
 
@@ -47,7 +35,7 @@ public class Movement : MonoBehaviour
     private bool hasShield;
     private float endOfIFrames;
     private int scoreMultiplier;
-    private bool newHighScore;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -56,9 +44,10 @@ public class Movement : MonoBehaviour
         highscore = PlayerPrefs.GetInt("HighScore", 0);
         scoreDisplay.text = score + "";
         HighscoreDisplay.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+        multiplierDisplay.text = "x" + scoreMultiplier;
         hasShield = false;
+        shieldIcon.SetActive(false);
         scoreMultiplier = 1;
-        newHighScore = false;
     }
 
     // Update is called once per frame
@@ -66,7 +55,6 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jumpSoundEffect.Play();
             rb.gravityScale *= -1;
             animator.SetBool("isFlying", true);
             animator.SetBool("isCeil", false);
@@ -100,10 +88,10 @@ public class Movement : MonoBehaviour
             {
                 endOfIFrames = iFrames;
                 hasShield = false;
+                shieldIcon.SetActive(false);
             }
             if (endOfIFrames <= 0.0f)
             {
-                deathSoundEffect.Play();
                 GameStateManager.gameOver();
             }
         }
@@ -122,16 +110,10 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Score")
         {
-            coinSoundEffect.Play();
             score += scoreMultiplier;
             scoreDisplay.text = score + "";
             if (score > PlayerPrefs.GetInt("Highscore", highscore))
             {
-                if (newHighScore == false)
-                {
-                    newHighScore = true;
-                    newHighScoreSoundEffect.Play();
-                }
                 highscore = score;
                 PlayerPrefs.SetInt("HighScore", highscore);
                 HighscoreDisplay.text = highscore + "";
@@ -141,13 +123,14 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Shield")
         {
             hasShield = true;
-            shieldSoundEffect.Play();
+            shieldIcon.SetActive(true);
+
         }
 
         if (collision.gameObject.tag == "PlusOne")
         {
             scoreMultiplier += 1;
-            plusOneSoundEffect.Play();
+            multiplierDisplay.text = "x" + scoreMultiplier;
         }
     }
 }
