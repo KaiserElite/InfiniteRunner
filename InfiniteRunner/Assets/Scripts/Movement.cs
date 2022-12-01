@@ -26,6 +26,24 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private GameObject shieldIcon;
 
+    [SerializeField]
+    private AudioSource jumpSound;
+
+    [SerializeField]
+    private AudioSource plusOneSound;
+
+    [SerializeField]
+    private AudioSource shieldSound;
+
+    [SerializeField]
+    private AudioSource coinSound;
+
+    [SerializeField]
+    private AudioSource deathSound;
+
+    [SerializeField]
+    private AudioSource newHighScoreSound;
+
     public Animator animator; 
 
     private bool top;
@@ -35,6 +53,7 @@ public class Movement : MonoBehaviour
     private bool hasShield;
     private float endOfIFrames;
     private int scoreMultiplier;
+    private bool newHighScore;
   
 
     // Start is called before the first frame update
@@ -48,6 +67,7 @@ public class Movement : MonoBehaviour
         hasShield = false;
         shieldIcon.SetActive(false);
         scoreMultiplier = 1;
+        newHighScore = false;
     }
 
     // Update is called once per frame
@@ -55,6 +75,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            jumpSound.Play();
             rb.gravityScale *= -1;
             animator.SetBool("isFlying", true);
             animator.SetBool("isCeil", false);
@@ -92,6 +113,7 @@ public class Movement : MonoBehaviour
             }
             if (endOfIFrames <= 0.0f)
             {
+                deathSound.Play();
                 GameStateManager.gameOver();
             }
         }
@@ -110,10 +132,16 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Score")
         {
+            coinSound.Play();
             score += scoreMultiplier;
             scoreDisplay.text = score + "";
             if (score > PlayerPrefs.GetInt("Highscore", highscore))
             {
+                if (newHighScore == false)
+                {
+                    newHighScore = true;
+                    newHighScoreSound.Play();
+                }
                 highscore = score;
                 PlayerPrefs.SetInt("HighScore", highscore);
                 HighscoreDisplay.text = highscore + "";
@@ -124,13 +152,14 @@ public class Movement : MonoBehaviour
         {
             hasShield = true;
             shieldIcon.SetActive(true);
-
+            shieldSound.Play();
         }
 
         if (collision.gameObject.tag == "PlusOne")
         {
             scoreMultiplier += 1;
             multiplierDisplay.text = "x" + scoreMultiplier;
+            plusOneSound.Play();
         }
     }
 }
