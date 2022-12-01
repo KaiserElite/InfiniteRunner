@@ -19,7 +19,7 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            //retry = false;
+           
             Time.timeScale = 1f;
             GameOverMenu.SetActive(false);
         }
@@ -31,7 +31,6 @@ public class GameOver : MonoBehaviour
         isOver = !isOver;
         SceneManager.LoadScene("SampleScene");
 
-        //retry = !retry;
     }
     public void Menu()
     {
