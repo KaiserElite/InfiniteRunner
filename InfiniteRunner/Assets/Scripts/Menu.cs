@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour
 
 
     }
-    //A method that we want to hook up to when the restart button gets pressed
+   
     public void Restart()
     {
         //Add code here to restart the game

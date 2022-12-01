@@ -30,7 +30,6 @@ public class GameStateManager : MonoBehaviour
 
     public static void gameOver()
     {
-        //SceneManager.LoadScene("Menu");
         Time.timeScale = 0f;
         SceneManager.LoadScene("GameOverScene");
         GameOver.isOver = true;

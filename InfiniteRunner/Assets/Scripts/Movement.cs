@@ -47,8 +47,8 @@ public class Movement : MonoBehaviour
     public Animator animator; 
 
     private bool top;
-    private int score;/// Figure out how to code the score based on time (ex. 1 second = 1 point)
-                      /// and then figure out how to display the score onto the game itself
+    private int score;
+
     private int highscore;
     private bool hasShield;
     private float endOfIFrames;
@@ -84,7 +84,6 @@ public class Movement : MonoBehaviour
         {
             endOfIFrames -= Time.deltaTime;
         }
-        //scoreDisplay.text = score.ToString();
     }
 
 
